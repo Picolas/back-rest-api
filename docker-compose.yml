@@ -1,0 +1,33 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: express-api
+    env_file:
+      - .env
+    ports:
+      - "${APP_PORT}"
+    external_links:
+      - mongodb
+    depends_on:
+      - mongodb
+    restart: 'always'
+
+  mongodb:
+    image: mongo:4.4
+    container_name: mongodb
+    ports:
+      - "${APP_DB_PORT}"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+    restart: 'always'
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
