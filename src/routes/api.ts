@@ -8,6 +8,12 @@ const API_PREFIX: string = "/api";
 export default (): Router => {
     const router: Router = Router();
 
+    router.get(API_PREFIX + '/', (req, res) => {
+        res.json({
+            message: 'Welcome to the API!'
+        });
+    });
+
     router.use(API_PREFIX + '/user', userRoutes());
     router.use(API_PREFIX + '/place', placeRoutes());
     router.use(API_PREFIX + '/auth', authRoutes());

@@ -1,0 +1,38 @@
+[
+  {
+    "address": "123 Main St",
+    "phone_number": "1234567890",
+    "required_pass_level": 1,
+    "required_age_level": 27
+  },
+  {
+    "address": "123 Main St",
+    "phone_number": "0987654321",
+    "required_pass_level": 2,
+    "required_age_level": 25
+  },
+  {
+    "address": "123 Main St",
+    "phone_number": "1234567890",
+    "required_pass_level": 3,
+    "required_age_level": 23
+  },
+  {
+    "address": "123 Main St",
+    "phone_number": "1234567890",
+    "required_pass_level": 4,
+    "required_age_level": 23
+  },
+  {
+    "address": "123 Main St",
+    "phone_number": "1234567890",
+    "required_pass_level": 5,
+    "required_age_level": 30
+  },
+  {
+    "address": "123 Main St",
+    "phone_number": "0987654321",
+    "required_pass_level": 0,
+    "required_age_level": 21
+  }
+]

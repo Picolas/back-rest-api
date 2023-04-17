@@ -2,11 +2,18 @@ import {Request, Response, NextFunction} from "express";
 import PlaceService from "../services/PlaceService";
 import UserService from "../services/UserService";
 import PassService from "../services/PassService";
+import {getUserFromToken} from "../utils/JwtUtils";
 
 async function canUserAccessPlaceMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const place = await PlaceService.getPlaceById(req.params.id);
-        const user = await UserService.getUserById(req.params.userId);
+
+        const user = getUserFromToken(req.headers.authorization);
+        if (!user) {
+            return res.status(401).json({
+                message: 'No token provided'
+            });
+        }
 
         if (!user) {
             return res.status(404).json({
@@ -27,13 +34,7 @@ async function canUserAccessPlaceMiddleware(req: Request, res: Response, next: N
         }
 
         // check all pass level for user, for the rappel, a user have 0 to n pass
-        let userHasRequiredPass = false;
-        for (const pass of user.pass) {
-            const passLevel = await PassService.getPassById(pass.id);
-            if (passLevel.level >= place.required_pass_level) {
-                userHasRequiredPass = true;
-            }
-        }
+        const userHasRequiredPass = user.pass.some(pass => pass.level >= place.required_pass_level);
 
         if (userHasRequiredPass === false) {
             return res.status(403).json({

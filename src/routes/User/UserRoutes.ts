@@ -1,24 +1,20 @@
 import {Router} from "express";
+import UserController from "../../controllers/User/UserController";
 
 export default (): Router => {
     const router: Router = Router();
 
     // crud routes
-    router.get('/:id', (req, res) => {
-        res.send('GET request to the homepage');
-    });
+    router.get('/:id', UserController.getUserById);
 
-    router.post('/', (req, res) => {
-        res.send('POST request to the homepage');
-    });
+    router.post('/', UserController.createUser);
 
-    router.patch('/:id', (req, res) => {
-        res.send('PATCH request to the homepage');
-    });
+    router.patch('/:id', UserController.updateUser);
 
-    router.delete('/:id', (req, res) => {
-        res.send('DELETE request to the homepage');
-    });
+    router.delete('/:id', UserController.deleteUser);
+
+    // get all
+    router.get('/', UserController.getAllUsers);
 
     return router;
 };

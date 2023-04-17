@@ -1,9 +1,7 @@
-export function passwordEncryption(password: string): string {
-    // TODO: implement password encryption
-    return password;
-}
+import bcrypt from 'bcrypt';
+import {BCRYPT_SALT_ROUNDS} from "../configs/bcryptConfig";
 
-export function passwordDecryption(password: string): string {
-    // TODO: implement password decryption
-    return password;
+export function passwordEncryption(password: string): string {
+    const salt = bcrypt.genSaltSync(BCRYPT_SALT_ROUNDS);
+    return bcrypt.hashSync(password, salt);
 }

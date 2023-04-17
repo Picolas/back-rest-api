@@ -19,6 +19,10 @@ class PlaceService {
     public static async deletePlace(id: string) {
         return await this.placeModel.findByIdAndDelete(id);
     }
+
+    public static async getAllPlaces() {
+        return await this.placeModel.find();
+    }
 }
 
 export default PlaceService;

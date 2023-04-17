@@ -1,0 +1,67 @@
+[
+  {
+    "first_name": "John",
+    "last_name": "Doe",
+    "age": 25,
+    "phone_number": "1234567890",
+    "address": "123 Main St",
+    "email": "johndoe@gmail.com",
+    "password": "$2a$10$mkWfGYjtCQzDgSrCDzAGI.f13kzXg1IY6DRVr5jPFqHg2lsnjh9zq",
+    "pass": [
+      {
+        "$oid": "643ad327f1d0d046839e93e5"
+      },
+      {
+        "$oid": "643ad331ff8fefc92272ff38"
+      }
+    ]
+  },
+  {
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "age": 23,
+    "phone_number": "0987654321",
+    "address": "123 Main St",
+    "email": "janedoe@gmail.com",
+    "password": "weakpasswordV2",
+    "pass": [
+      {
+        "$oid": "643ad33aa2886765e292a4ca"
+      }
+    ]
+  },
+  {
+    "first_name": "John",
+    "last_name": "Smith",
+    "age": 30,
+    "phone_number": "1234567890",
+    "address": "123 Main St",
+    "email": "jhonsmith@gmail.com",
+    "password": "weakpasswordV3",
+    "pass": [
+      {
+        "$oid": "643ad341e958bdca395a605a"
+      },
+      {
+        "$oid": "643ad34627da17b1d892f7eb"
+      }
+    ]
+  },
+  {
+    "first_name": "Jane",
+    "last_name": "Smith",
+    "age": 28,
+    "phone_number": "0987654321",
+    "address": "123 Main St",
+    "email": "janesmith@gmail.com",
+    "password": "weakpasswordV4",
+    "pass": [
+      {
+        "$oid": "643ad34c46a4a6229d8ffc0a"
+      },
+      {
+        "$oid": "643ad38eaf54bf24fb63bfe2"
+      }
+    ]
+  }
+]

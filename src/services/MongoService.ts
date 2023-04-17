@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const APP_DB_HOST = process.env.APP_DB_HOST || "";
 const APP_DB_NAME = process.env.APP_DB_NAME || "";
@@ -19,9 +21,13 @@ class MongoService {
 
     // connect to mongodb
     public static async connect(): Promise<void> {
+        let DB_USER_PASSWORD = "";
+        if (APP_DB_USER && APP_DB_PASSWORD) {
+            DB_USER_PASSWORD = APP_DB_USER + ":" + APP_DB_PASSWORD + "@";
+        }
         try {
             await MongoService.getInstance().connect(
-                `mongodb://${APP_DB_USER}:${APP_DB_PASSWORD}@${APP_DB_HOST}:${APP_DB_PORT}`, {
+                `mongodb://${DB_USER_PASSWORD}${APP_DB_HOST}:${APP_DB_PORT}`, {
                 dbName: APP_DB_NAME
             });
             console.log("Connected to MongoDB");

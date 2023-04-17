@@ -1,24 +1,21 @@
 import {Router} from "express";
+import PlaceController from "../../controllers/Place/PlaceController";
+import jwtMiddleware from "../../middlewares/JwtMiddleware";
+import canUserAccessPlaceMiddleware from "../../middlewares/CanUserAccessPlaceMiddleware";
 
 export default (): Router => {
     const router: Router = Router();
 
     // crud routes
-    router.get('/:id', (req, res) => {
-        res.send('GET request to the homepage');
-    });
+    router.get('/:id', jwtMiddleware, canUserAccessPlaceMiddleware, PlaceController.getPlace);
 
-    router.post('/', (req, res) => {
-        res.send('POST request to the homepage');
-    });
+    router.post('/', jwtMiddleware, PlaceController.createPlace);
 
-    router.patch('/:id', (req, res) => {
-        res.send('PATCH request to the homepage');
-    });
+    router.patch('/:id', jwtMiddleware, PlaceController.updatePlace);
 
-    router.delete('/:id', (req, res) => {
-        res.send('DELETE request to the homepage');
-    });
+    router.delete('/:id', jwtMiddleware, PlaceController.deletePlace);
+
+    router.get('/', jwtMiddleware, PlaceController.getAllPlaces);
 
     return router;
 };
