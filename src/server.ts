@@ -4,7 +4,6 @@ import * as dotenv from 'dotenv';
 import {Application} from "express";
 import MongoService from "./services/MongoService";
 import apiRoutes from "./routes/api";
-import * as process from "process";
 
 dotenv.config();
 
