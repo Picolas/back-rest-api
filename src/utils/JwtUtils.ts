@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
+import {JwtPayload} from "jsonwebtoken";
 dotenv.config();
 
 const APP_JWT_SECRET_KEY = process.env.APP_JWT_SECRET_KEY || 'secret';
@@ -17,5 +18,8 @@ export function verifyToken(token: string): any {
 
 export function getUserFromToken(token: string): any {
     const decoded = jwt.decode(token);
-    return decoded['user'];
+    if (decoded) {
+        return decoded['user'];
+    }
+    return null;
 }

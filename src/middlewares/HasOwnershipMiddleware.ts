@@ -18,7 +18,7 @@ async function hasOwnershipMiddleware(req: Request, res: Response, next: NextFun
         });
     }
 
-    if (user.id !== userId) {
+    if (user._id !== userId) {
         return res.status(403).json({
             message: 'You do not have the permission to access this resource'
         });
