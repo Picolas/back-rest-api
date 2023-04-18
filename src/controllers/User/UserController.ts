@@ -24,15 +24,23 @@ class UserController {
 
     public static async createUser(req: Request, res: Response, next: NextFunction) {
         try {
-            const userRequest = req.body.user;
-            const passId = await PassService.createPass({
-                level: req.body.level,
-            });
-            const password = passwordEncryption(userRequest.password);
+            // create or multiple passes based on object passes
+            let passIds = [];
+            if (req.body.passes) {
+                for (const pass of req.body.passes) {
+                    const createdPass = await PassService.createPass({
+                        level: pass,
+                    });
+                    if (createdPass) {
+                        passIds.push(createdPass._id);
+                    }
+                }
+            }
+            const password = passwordEncryption(req.body.password);
 
             const user = await UserService.createUser({
-                ...userRequest,
-                pass: passId,
+                ...req.body,
+                pass: passIds,
                 password: password
             });
 

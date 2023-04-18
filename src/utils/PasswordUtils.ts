@@ -1,4 +1,4 @@
-import {BCRYPT_SALT_ROUNDS} from "../configs/bcryptConfig";
+import {BCRYPT_SALT_ROUNDS} from "../config/bcryptConfig";
 import * as bcrypt from "bcrypt";
 
 export function passwordEncryption(password: string): string {
