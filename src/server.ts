@@ -4,6 +4,7 @@ import * as dotenv from 'dotenv';
 import {Application} from "express";
 import MongoService from "./services/MongoService";
 import apiRoutes from "./routes/api";
+import corsMiddleware from "./middlewares/CorsMiddleware";
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ const initApp = async () => {
     await MongoService.connect();
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({extended: true}));
+    app.use(corsMiddleware)
 
     // routes api
     app.use(apiRoutes());
