@@ -3,6 +3,49 @@ import MongoService from "../../services/MongoService";
 import {TimeStamps} from "@typegoose/typegoose/lib/defaultClasses";
 import {Pass} from "../Pass/Pass";
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         first_name:
+ *           type: string
+ *           description: The user's first name.
+ *         last_name:
+ *           type: string
+ *           description: The user's last name.
+ *         age:
+ *           type: integer
+ *           description: The user's age.
+ *         phone_number:
+ *           type: string
+ *           description: The user's phone number.
+ *         address:
+ *           type: string
+ *           description: The user's address.
+ *         email:
+ *           type: string
+ *           description: The user's email address.
+ *         password:
+ *           type: string
+ *           description: The user's password.
+ *         pass:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/Pass'
+ *           description: An array of pass objects associated with the user.
+ *       required:
+ *         - first_name
+ *         - last_name
+ *         - age
+ *         - phone_number
+ *         - address
+ *         - email
+ *         - password
+ */
+
 @modelOptions({ existingMongoose: MongoService.getInstance() })
 class User extends TimeStamps {
 

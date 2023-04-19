@@ -39,7 +39,8 @@ class PlaceController {
                     message: 'Place not found'
                 });
             }
-            return res.status(200).json(place);
+            const updatedPlace = await PlaceService.getPlaceById(req.params.id);
+            return res.status(200).json(updatedPlace);
         } catch (e) {
             return next(e);
         }

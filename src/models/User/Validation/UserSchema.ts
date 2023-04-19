@@ -10,7 +10,11 @@ export const UserSchema = z.object({
         address: z.string(),
         email: z.string().email(),
         password: z.string(),
-        passes: z.string().array().nullable()
+        pass: z.object(
+            {
+                level: z.number().min(0).max(5)
+            }
+        ).array().nullable()
     })
 });
 

@@ -14,7 +14,7 @@ class UserService {
     }
 
     public static async updateUser(id: string, user: any) {
-        return await this.userModel.findByIdAndUpdate(id, user);
+        return await this.userModel.findByIdAndUpdate(id, user).populate('pass');
     }
 
     public static async getUserById(id: string) {
@@ -27,7 +27,12 @@ class UserService {
     }
 
     public static async deleteUser(id: string) {
-        return await this.userModel.findByIdAndDelete(id);
+        return await this.userModel.findByIdAndDelete(id).populate('pass');
+    }
+
+    // add pass to user
+    public static async addPassToUser(id: any, passId: any) {
+        return await this.userModel.findByIdAndUpdate(id, {$push: {pass: passId}}).populate('pass');
     }
 }
 
