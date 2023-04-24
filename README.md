@@ -1,7 +1,8 @@
 # Exalt IT - Express API - Nicolas PIPLARD
 
-Pour lancer l'application executer cette commande :
+Pour lancer l'application executer tout d'abord cette commande puis cette commande :
 ```
+docker compose build
 docker compose up
 ```
 
