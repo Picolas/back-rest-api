@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  api:
+  express_api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +9,7 @@ services:
     env_file:
       - .env
     ports:
-      - "${APP_PORT}"
+      - "${APP_PORT}:${APP_PORT}"
     external_links:
       - mongodb
     depends_on:
@@ -19,15 +19,33 @@ services:
   mongodb:
     image: mongo:4.4
     container_name: mongodb
+    env_file:
+      - .env
     ports:
-      - "${APP_DB_PORT}"
+      - "${APP_DB_PORT}:${APP_DB_PORT}"
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: root
+      MONGO_INITDB_ROOT_USERNAME: ${APP_DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${APP_DB_PASSWORD}
 
     restart: 'always'
     volumes:
       - mongo-data:/data/db
+
+  mongo-seed:
+    image: mongo:4.4
+    container_name: mongo-seed
+    env_file:
+      - .env
+    depends_on:
+      - mongodb
+    volumes:
+      - ./seed:/seed
+    command: >
+      bash -c "sleep 10 && 
+               mongo --host mongodb --username $$APP_DB_USER --password $$APP_DB_PASSWORD --authenticationDatabase admin --eval 'db.passes.deleteMany({}); db.places.deleteMany({}); db.users.deleteMany({});' $$APP_DB_NAME &&
+               mongoimport --host mongodb --username $$APP_DB_USER --password $$APP_DB_PASSWORD --authenticationDatabase admin --db $$APP_DB_NAME --collection passes --file /seed/passes.json --jsonArray &&
+               mongoimport --host mongodb --username $$APP_DB_USER --password $$APP_DB_PASSWORD --authenticationDatabase admin --db $$APP_DB_NAME --collection places --file /seed/places.json --jsonArray &&
+               mongoimport --host mongodb --username $$APP_DB_USER --password $$APP_DB_PASSWORD --authenticationDatabase admin --db $$APP_DB_NAME --collection users --file /seed/users.json --jsonArray"
 
 volumes:
   mongo-data:

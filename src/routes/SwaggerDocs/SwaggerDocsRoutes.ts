@@ -9,7 +9,7 @@ export default (): Router => {
 
     const router: Router = Router();
 
-    const APP_URL = process.env.APP_URL || 'http://localhost:3000';
+    const APP_URL = process.env.APP_URL || 'http://localhost';
     const APP_PORT = process.env.APP_PORT || 3000;
 
     const specs = swaggerJSDoc({

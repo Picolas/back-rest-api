@@ -1,7 +1,6 @@
 # Utiliser une image Node.js officielle comme image de base
-FROM node:14-alpine
+FROM node:18-alpine
 
-# Définir le répertoire de travail
 WORKDIR /app
 
 # Copier les fichiers package.json et package-lock.json dans l'image
@@ -12,7 +11,10 @@ RUN npm install
 
 # Copier les autres fichiers de l'application dans l'image
 COPY src ./src
+COPY tsconfig.json ./tsconfig.json
 COPY .env ./
+
+RUN npm run build
 
 # Exposer le port sur lequel l'API sera accessible
 EXPOSE ${APP_PORT}
