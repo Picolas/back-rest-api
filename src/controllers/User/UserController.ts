@@ -5,7 +5,6 @@ import {passwordEncryption} from "../../utils/PasswordUtils";
 
 class UserController {
 
-    // user controller crud methods
     public static async getUserById(req: Request, res: Response, next: NextFunction) {
         try {
             const user = await UserService.getUserById(req.params.id);
@@ -24,7 +23,6 @@ class UserController {
 
     public static async createUser(req: Request, res: Response, next: NextFunction) {
         try {
-            // check if email already exists
             const getUserByEmail = await UserService.getUserByEmail(req.body.email);
             if (getUserByEmail) {
                 return res.status(400).json({
@@ -32,7 +30,6 @@ class UserController {
                 });
             }
 
-            // create or multiple passes based on object passes
             let passIds = [];
             if (req.body.pass) {
                 for (const pass of req.body.pass) {
@@ -67,7 +64,12 @@ class UserController {
     public static async updateUser(req: Request, res: Response, next: NextFunction) {
         try {
             const currentUser = await UserService.getUserById(req.params.id);
-            // update user, check if email already exists
+            if (!currentUser) {
+                return res.status(404).json({
+                    message: 'User not found'
+                });
+            }
+
             const getUserByEmail = await UserService.getUserByEmail(req.body.email);
             if (getUserByEmail && getUserByEmail._id != currentUser._id) {
                 return res.status(400).json({
@@ -76,7 +78,6 @@ class UserController {
             }
 
             const userBody = req.body;
-            // remove pass from body
             delete userBody.pass;
             if (userBody.password) {
                 userBody.password = passwordEncryption(userBody.password);
@@ -110,7 +111,6 @@ class UserController {
         }
     }
 
-    // get all users
     public static async getAllUsers(req: Request, res: Response, next: NextFunction) {
         try {
             const users = await UserService.getAllUsers();
@@ -125,7 +125,6 @@ class UserController {
         }
     }
 
-    // add pass to user
     public static async addPassToUser(req: Request, res: Response, next: NextFunction) {
         try {
             const user = await UserService.getUserById(req.params.id);

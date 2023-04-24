@@ -84,7 +84,6 @@ class PlaceController {
                 });
             }
 
-            // check all pass level for user and get all place that user can access trough his pass and his age
             const userPlaces = (await Promise.all(user.pass.map(async pass => {
                 const places = await PlaceService.getAllPlacesByPassLevel(pass.level);
                 return places.filter(place => user.age >= place.required_age_level);

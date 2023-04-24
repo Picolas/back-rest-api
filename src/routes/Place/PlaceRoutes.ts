@@ -187,7 +187,6 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
 export default (): Router => {
     const router: Router = Router();
 
-    // crud routes
     // 🚦 Une route pour obtenir la liste des Place accessibles par un User
     router.get('/all', jwtMiddleware, PlaceController.getAllUserPlaces);
 

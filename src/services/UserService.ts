@@ -8,7 +8,6 @@ class UserService {
         return await this.userModel.create(user);
     }
 
-    // get all users
     public static async getAllUsers() {
         return await this.userModel.find().populate('pass');
     }
@@ -21,7 +20,6 @@ class UserService {
         return await this.userModel.findById(id).populate('pass');
     }
 
-    // get user by email
     public static async getUserByEmail(email: string) {
         return await this.userModel.findOne({email: email}).populate('pass');
     }
@@ -30,7 +28,6 @@ class UserService {
         return await this.userModel.findByIdAndDelete(id).populate('pass');
     }
 
-    // add pass to user
     public static async addPassToUser(id: any, passId: any) {
         return await this.userModel.findByIdAndUpdate(id, {$push: {pass: passId}}).populate('pass');
     }

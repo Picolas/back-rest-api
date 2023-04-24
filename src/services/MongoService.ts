@@ -19,7 +19,6 @@ class MongoService {
         return MongoService.instance;
     }
 
-    // connect to mongodb
     public static async connect(): Promise<void> {
         let DB_USER_PASSWORD = "";
         if (APP_DB_USER && APP_DB_PASSWORD) {
@@ -36,7 +35,6 @@ class MongoService {
         }
     }
 
-    // disconnect from mongodb
     public static async disconnect(): Promise<void> {
         try {
             await MongoService.getInstance().disconnect();

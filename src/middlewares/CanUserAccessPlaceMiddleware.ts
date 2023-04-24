@@ -1,7 +1,5 @@
 import {Request, Response, NextFunction} from "express";
 import PlaceService from "../services/PlaceService";
-import UserService from "../services/UserService";
-import PassService from "../services/PassService";
 import {getUserFromToken} from "../utils/JwtUtils";
 
 async function canUserAccessPlaceMiddleware(req: Request, res: Response, next: NextFunction) {
@@ -26,7 +24,6 @@ async function canUserAccessPlaceMiddleware(req: Request, res: Response, next: N
             });
         }
 
-        // check all pass level for user, for the rappel, a user have 0 to n pass
         const userHasRequiredPass = user.pass.some(pass => pass.level >= place.required_pass_level);
 
         if (userHasRequiredPass === false) {

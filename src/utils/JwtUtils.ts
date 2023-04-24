@@ -1,12 +1,10 @@
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import {JwtPayload} from "jsonwebtoken";
 dotenv.config();
 
 const APP_JWT_SECRET_KEY = process.env.APP_JWT_SECRET_KEY || 'secret';
 
 export function generateToken(user: any): string {
-    // using JWT
     return jwt.sign({user}, APP_JWT_SECRET_KEY, {
         expiresIn: '1h'
     });

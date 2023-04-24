@@ -2,7 +2,6 @@ import {getUserFromToken} from "../utils/JwtUtils";
 import {NextFunction, Request, Response} from "express";
 
 async function hasOwnershipMiddleware(req: Request, res: Response, next: NextFunction) {
-    // check if user is the user
     const userId = req.params.id;
     if (!userId) {
         return res.status(404).json({
@@ -10,7 +9,6 @@ async function hasOwnershipMiddleware(req: Request, res: Response, next: NextFun
         });
     }
 
-    // retrieve the user from the token
     const user = getUserFromToken(req.headers.authorization);
     if (!user) {
         return res.status(401).json({
