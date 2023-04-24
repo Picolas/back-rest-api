@@ -7,23 +7,16 @@ import {getUserFromToken} from "../utils/JwtUtils";
 async function canUserAccessPlaceMiddleware(req: Request, res: Response, next: NextFunction) {
     try {
         const place = await PlaceService.getPlaceById(req.params.id);
-
-        const user = getUserFromToken(req.headers.authorization);
-        if (!user) {
-            return res.status(401).json({
-                message: 'No token provided'
-            });
-        }
-
-        if (!user) {
-            return res.status(404).json({
-                message: 'User not found'
-            });
-        }
-
         if (!place) {
             return res.status(404).json({
                 message: 'Place not found'
+            });
+        }
+
+        const user = getUserFromToken(req.headers.authorization);
+        if (!user) {
+            return res.status(404).json({
+                message: 'User not found'
             });
         }
 

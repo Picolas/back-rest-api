@@ -3,7 +3,7 @@ import { z } from "zod";
 
 export const PassSchema = z.object({
     body: z.object({
-        level: z.number().min(0).max(5),
+        level: z.number().min(1).max(5),
     })
 });
 

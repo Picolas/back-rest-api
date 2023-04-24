@@ -12,7 +12,7 @@ export const UserSchema = z.object({
         password: z.string(),
         pass: z.object(
             {
-                level: z.number().min(0).max(5)
+                level: z.number().min(1).max(5)
             }
         ).array().nullable()
     })

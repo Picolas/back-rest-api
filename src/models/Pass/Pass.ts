@@ -21,7 +21,7 @@ import MongoService from "../../services/MongoService";
 @modelOptions({ existingMongoose: MongoService.getInstance() })
 class Pass extends TimeStamps {
 
-    @prop({ min: 0, max: 5 })
+    @prop({ min: 1, max: 5 })
     public level!: number;
 }
 

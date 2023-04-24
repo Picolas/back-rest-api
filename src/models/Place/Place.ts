@@ -36,7 +36,7 @@ class Place extends TimeStamps {
     @prop()
     public phone_number!: string;
 
-    @prop()
+    @prop({ min: 1, max: 5 })
     public required_pass_level!: number;
 
     @prop()
