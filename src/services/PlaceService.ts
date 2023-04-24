@@ -23,6 +23,10 @@ class PlaceService {
     public static async getAllPlaces() {
         return await this.placeModel.find();
     }
+
+    public static async getAllPlacesByPassLevel(passLevel: number) {
+        return await this.placeModel.find({required_pass_level: {$lte: passLevel}});
+    }
 }
 
 export default PlaceService;

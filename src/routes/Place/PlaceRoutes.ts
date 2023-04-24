@@ -41,6 +41,25 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *         description: Place not found.
  *
  * @swagger
+ * /place/all:
+ *   get:
+ *     summary: Get all place a user can access
+ *     description: Retrieves all places a user can access.
+ *     tags: [Place]
+ *     security:
+ *       - JWT: []
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved all places a user can access.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               $ref: '#/components/schemas/Place'
+ *       404:
+ *         description: User not found.
+ *
+ * @swagger
  * /place:
  *   post:
  *     summary: Create a new place
@@ -169,6 +188,10 @@ export default (): Router => {
     const router: Router = Router();
 
     // crud routes
+    // 🚦 Une route pour obtenir la liste des Place accessibles par un User
+    router.get('/all', jwtMiddleware, PlaceController.getAllUserPlaces);
+
+    // 🚦 Une route pour vérifier si un User a accès à une Place
     router.get('/:id', jwtMiddleware, canUserAccessPlaceMiddleware, PlaceController.getPlace);
 
     router.post('/', jwtMiddleware, isAdminMiddleware, validateSchemaMiddleware(PlaceSchema), PlaceController.createPlace);

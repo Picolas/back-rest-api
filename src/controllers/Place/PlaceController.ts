@@ -1,5 +1,6 @@
 import PlaceService from "../../services/PlaceService";
 import {NextFunction, Request, Response} from "express";
+import {getUserFromToken} from "../../utils/JwtUtils";
 
 class PlaceController {
 
@@ -69,6 +70,27 @@ class PlaceController {
                 });
             }
             return res.status(200).json(places);
+        } catch (e) {
+            return next(e);
+        }
+    }
+
+    public static async getAllUserPlaces(req: Request, res: Response, next: NextFunction) {
+        try {
+            const user = getUserFromToken(req.headers.authorization);
+            if (!user) {
+                return res.status(404).json({
+                    message: 'User not found'
+                });
+            }
+
+            // check all pass level for user and get all place that user can access trough his pass and his age
+            const userPlaces = (await Promise.all(user.pass.map(async pass => {
+                const places = await PlaceService.getAllPlacesByPassLevel(pass.level);
+                return places.filter(place => user.age >= place.required_age_level);
+            }))).flat();
+
+            return res.status(200).json(userPlaces);
         } catch (e) {
             return next(e);
         }
