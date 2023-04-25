@@ -27,7 +27,7 @@ Le token est valable 1h.
 
 Une route contenant un user et pass pré-rempli est disponible pour tester l'api sans avoir à créer un compte.
 
-L'email et le password sont déjà rempli dans les paramètres de la route /auth/login sur swagger, il faut simplement cliquer sur "Try it out" puis sur "Execute".
+L'email et le password sont déjà rempli dans les paramètres de la route /api/auth sur swagger, il faut simplement cliquer sur "Try it out" puis sur "Execute".
 
 Enfin, il faut ajouter le token généré dans la partie "Authorize" en haut à droite de swagger. 
 Il faut ajouter le token dans le champ "Value".
