@@ -14,7 +14,7 @@ import PassController from "../../controllers/Pass/PassController";
 
 /**
  * @swagger
- * /pass/{id}:
+ * /passes/{id}:
  *   get:
  *     summary: Get a pass by ID
  *     description: Retrieves a specific pass by its ID.
@@ -45,7 +45,7 @@ import PassController from "../../controllers/Pass/PassController";
  *         description: Pass not found.
  *
  * @swagger
- * /pass:
+ * /passes:
  *   post:
  *     summary: Create a new pass
  *     description: Creates a new pass with the provided information.
@@ -77,7 +77,7 @@ import PassController from "../../controllers/Pass/PassController";
  *         description: Invalid input data.
  *
  * @swagger
- * /pass/{id}:
+ * /passes/{id}:
  *   patch:
  *     summary: Update a pass by ID
  *     description: Updates a specific pass by its ID with the provided information.
@@ -113,7 +113,7 @@ import PassController from "../../controllers/Pass/PassController";
  *         description: Pass not found.
  *
  * @swagger
- * /pass/{id}:
+ * /passes/{id}:
  *   delete:
  *     summary: Delete a pass by ID
  *     description: Deletes a specific pass by its ID.
@@ -143,7 +143,7 @@ import PassController from "../../controllers/Pass/PassController";
  *          description: Pass not found.
  *
  * @swagger
- * /pass:
+ * /passes:
  *   get:
  *     summary: Get all passes
  *     description: Retrieves all passes.

@@ -16,7 +16,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
 
 /**
  * @swagger
- * /user/{id}:
+ * /users/{id}:
  *   get:
  *     summary: Get a user by ID
  *     description: Retrieves a specific user by their ID.
@@ -42,7 +42,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
  *         description: User not found.
  *
  * @swagger
- * /user:
+ * /users:
  *   post:
  *     summary: Create a new user
  *     description: Creates a new user with the provided information.
@@ -72,7 +72,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
  *         description: Invalid input data.
  *
  * @swagger
- * /user/{id}:
+ * /users/{id}:
  *   patch:
  *     summary: Update a user by ID
  *     description: Updates a specific user by their ID with the provided information.
@@ -108,7 +108,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
  *         description: User not found.
  *
  * @swagger
- * /user/{id}:
+ * /users/{id}:
  *   delete:
  *     summary: Delete a user by ID
  *     description: Deletes a specific user by their ID.
@@ -138,7 +138,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
  *         description: User not found.
  *
  * @swagger
- * /user:
+ * /users:
  *   get:
  *     summary: Get all users
  *     description: Retrieves all users.
@@ -164,7 +164,7 @@ import {PassSchema} from "../../models/Pass/Validation/PassSchema";
  *         description: Users not found.
  *
  * @swagger
- * /user/{id}/pass:
+ * /users/{id}/pass:
  *   post:
  *     summary: Add a pass to a user
  *     description: Adds a pass to a user.

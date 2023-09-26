@@ -15,7 +15,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
 
 /**
  * @swagger
- * /place/{id}:
+ * /places/{id}:
  *   get:
  *     summary: Get a place by ID
  *     description: Retrieves a specific place by its ID.
@@ -41,7 +41,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *         description: Place not found.
  *
  * @swagger
- * /place/all:
+ * /places/all:
  *   get:
  *     summary: Get all place a user can access
  *     description: Retrieves all places a user can access.
@@ -60,7 +60,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *         description: User not found.
  *
  * @swagger
- * /place:
+ * /places:
  *   post:
  *     summary: Create a new place
  *     description: Creates a new place with the provided information.
@@ -92,7 +92,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *         description: Invalid input data.
  *
  * @swagger
- * /place/{id}:
+ * /places/{id}:
  *   patch:
  *     summary: Update a place by ID
  *     description: Updates a specific place by its ID with the provided information.
@@ -128,7 +128,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *         description: Place not found.
  *
  * @swagger
- * /place/{id}:
+ * /places/{id}:
  *   delete:
  *     summary: Delete a place by ID
  *     description: Deletes a specific place by its ID.
@@ -158,7 +158,7 @@ import {PartialPlaceSchema, PlaceSchema} from "../../models/Place/Validation/Pla
  *          description: Place not found.
  *
  * @swagger
- * /place:
+ * /places:
  *   get:
  *     summary: Get all places
  *     description: Retrieves all places.
