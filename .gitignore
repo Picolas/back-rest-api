@@ -11,5 +11,17 @@ coverage
 # Benchmarking
 benchmarks/graphs
 
+# IDEs
+.idea
+.vscode
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build
+build
+dist
+
 # ignore additional files using core.excludesFile
 # https://git-scm.com/docs/gitignore
