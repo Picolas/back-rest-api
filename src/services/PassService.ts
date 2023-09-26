@@ -20,6 +20,10 @@ class PassService {
         return await this.passModel.findByIdAndDelete(id);
     }
 
+    public static async getPasses() {
+        return await this.passModel.find();
+    }
+
     // getPassesByUserId
     public static async getPassesByUserId(id: string) {
         return await this.passModel.find({user: id});
